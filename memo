@@ -1,5 +1,8 @@
+<!-- @format -->
+
 mix new ./
 mix new dir_name
+
 ```
 .
 ├── README.md
@@ -10,6 +13,7 @@ mix new dir_name
     ├── test_helper.exs
     └── webdb_elixir_csv_sample_test.exs
 ```
+
 add priv dir
 
 https://www.data.go.jp/
@@ -35,4 +39,10 @@ New:
 * Getting makeup (Hex package)
 * Getting nimble_parsec (Hex package)
 * Getting parallel_stream (Hex package)
+```
+
+```elixir
+orders = WebdbElixirCsvSample.import!("priv/ie_ramen.csv")
+orders |> WebdbElixirCsvSample.Order.calc_review_avg("男", "10代")
+orders |> WebdbElixirCsvSample.Order.calc_order_rates(& &1.age == "10代")
 ```

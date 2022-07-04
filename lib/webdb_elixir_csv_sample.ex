@@ -1,4 +1,6 @@
 defmodule WebdbElixirCsvSample do
+  alias WebdbElixirCsvSample.Order
+
   def import!(path) do
     path
     |> Path.expand()
