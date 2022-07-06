@@ -2,16 +2,16 @@ defmodule WebdbElixirCsvSample.Order do
   @moduledoc """
   注文データに関するstructの生成と分析を行う module です。
   """
-  defstruct [:gender, :age, :oily, :hardness, :salinity, :topping, :rice, :review]
+  defstruct [:gender, :age, :oil_level, :hard_level, :salt_level, :topping, :rice, :review]
 
   @key_name_map %{
+    gender: "性別",
+    age: "年齢",
+    oil_level: "脂",
+    salt_level: "濃さ",
+    hard_level: "硬さ",
     topping: "トッピング",
     rice: "ライス",
-    gender: "性別",
-    age: "年代",
-    oily: "脂",
-    salinity: "濃さ",
-    hardness: "硬さ",
     review: "評価"
   }
 
@@ -22,9 +22,9 @@ defmodule WebdbElixirCsvSample.Order do
       iex> %{
       ...>   "トッピング" => "チャーシュー",
       ...>   "ライス" => "普通",
-      ...>   "年代" => "20代",
+      ...>   "年齢" => "20代",
       ...>   "性別" => "男性",
-      ...>   "脂脂" => "多め",
+      ...>   "脂" => "多め",
       ...>   "濃さ" => "濃いめ",
       ...>   "硬さ" => "硬め",
       ...>   "評価" => "5"
@@ -35,22 +35,22 @@ defmodule WebdbElixirCsvSample.Order do
         rice: "普通",
         age: "20代",
         gender:  "男性",
-        oily: "多め",
-        salinity: "濃いめ",
-        hardness: "硬め",
+        oil_level: "多め",
+        salt_level: "濃いめ",
+        hard_level: "硬め",
         review: 5
       }
   """
   def new(order_map)
 
   def new(%{
+        "性別" => gender,
+        "年齢" => age,
+        "脂" => oil_level,
+        "濃さ" => salt_level,
+        "硬さ" => hard_level,
         "トッピング" => topping,
         "ライス" => rice,
-        "年代" => age,
-        "性別" => gender,
-        "脂脂" => oily,
-        "濃さ" => salinity,
-        "硬さ" => hardness,
         "評価" => review
       }) do
     %__MODULE__{
@@ -58,17 +58,17 @@ defmodule WebdbElixirCsvSample.Order do
       rice: rice,
       age: age,
       gender: gender,
-      oily: oily,
-      salinity: salinity,
-      hardness: hardness,
+      oil_level: oil_level,
+      salt_level: salt_level,
+      hard_level: hard_level,
       review: review |> String.to_integer()
     }
   end
 
-  def new(_), do: {:error, :required_columns_dose_not_exsit}
+  def new(_), do: {:error, :required_key_dose_not_exsit}
 
   @doc """
-  Ordere structのkey名を日本語名称に変換します。
+  Order structのkey名を日本語名称に変換します。
   ## Examples
       iex> WebdbElixirCsvSample.Order.en_key_to_ja(:topping)
       "トッピング"
@@ -76,7 +76,7 @@ defmodule WebdbElixirCsvSample.Order do
   def en_key_to_ja(key), do: @key_name_map[key]
 
   @doc """
-  Ordere structのリスト, 任意の性別と年代を元にReviewの平均値を算出します。
+  Order structのリスト, 任意の性別と年齢を元にReviewの平均値を算出します。
 
   ## Examples
       iex> [
@@ -106,20 +106,20 @@ defmodule WebdbElixirCsvSample.Order do
 
   ## Examples
       iex> [
-      ...>   %WebdbElixirCsvSample.Order{gender: "男性", topping: "チャーシュー", rice: "なし", oily: "多め", salinity: "濃いめ", hardness: "やわ"},
-      ...>   %WebdbElixirCsvSample.Order{gender: "男性", topping: "ほうれん草", rice: "普通", oily: "多め", salinity: "濃いめ", hardness: "普通"},
-      ...>   %WebdbElixirCsvSample.Order{gender: "女性", topping: "ほうれん草", rice: "大盛り", oily: "少なめ", salinity: "薄め", hardness: "硬め"},
-      ...>   %WebdbElixirCsvSample.Order{gender: "女性", topping: "ほうれん草", rice: "なし", oily: "普通", salinity: "濃いめ", hardness: "普通"},
-      ...>   %WebdbElixirCsvSample.Order{gender: "男性", topping: "味玉", rice: "大盛り", oily: "普通", salinity: "薄め", hardness: "硬め"},
-      ...>   %WebdbElixirCsvSample.Order{gender: "男性", topping: "海苔", rice: "大盛り", oily: "多め", salinity: "普通", hardness: "硬め"},
-      ...>   %WebdbElixirCsvSample.Order{gender: "男性", topping: "味玉", rice: "普通", oily: "普通", salinity: "普通", hardness: "硬め"},
+      ...>   %WebdbElixirCsvSample.Order{gender: "男性", topping: "チャーシュー", rice: "なし", oil_level: "多め", salt_level: "濃いめ", hard_level: "やわ"},
+      ...>   %WebdbElixirCsvSample.Order{gender: "男性", topping: "ほうれん草", rice: "普通", oil_level: "多め", salt_level: "濃いめ", hard_level: "普通"},
+      ...>   %WebdbElixirCsvSample.Order{gender: "女性", topping: "ほうれん草", rice: "大盛り", oil_level: "少なめ", salt_level: "薄め", hard_level: "硬め"},
+      ...>   %WebdbElixirCsvSample.Order{gender: "女性", topping: "ほうれん草", rice: "なし", oil_level: "普通", salt_level: "濃いめ", hard_level: "普通"},
+      ...>   %WebdbElixirCsvSample.Order{gender: "男性", topping: "味玉", rice: "大盛り", oil_level: "普通", salt_level: "薄め", hard_level: "硬め"},
+      ...>   %WebdbElixirCsvSample.Order{gender: "男性", topping: "海苔", rice: "大盛り", oil_level: "多め", salt_level: "普通", hard_level: "硬め"},
+      ...>   %WebdbElixirCsvSample.Order{gender: "男性", topping: "味玉", rice: "普通", oil_level: "普通", salt_level: "普通", hard_level: "硬め"},
       ...> ]
       ...> |> WebdbElixirCsvSample.Order.calc_order_rates(&(&1.gender == "男性"))
       %{
-        hardness: %{"やわ" => 20.0, "普通" => 20.0, "硬め" => 60.0},
-        oily: %{"多め" => 60.0, "普通" => 40.0},
+        hard_level: %{"やわ" => 20.0, "普通" => 20.0, "硬め" => 60.0},
+        oil_level: %{"多め" => 60.0, "普通" => 40.0},
         rice: %{"なし" => 20.0, "大盛り" => 40.0, "普通" => 40.0},
-        salinity: %{"普通" => 40.0, "濃いめ" => 40.0, "薄め" => 20.0},
+        salt_level: %{"普通" => 40.0, "濃いめ" => 40.0, "薄め" => 20.0},
         topping: %{"ほうれん草" => 20.0, "チャーシュー" => 20.0, "味玉" => 40.0, "海苔" => 20.0}
       }
 
@@ -130,16 +130,16 @@ defmodule WebdbElixirCsvSample.Order do
     |> Enum.filter(&filter_func.(&1))
     |> then(fn targets ->
       %{
-        rice: targets |> calc_avg_by_order_key(:rice),
-        topping: targets |> calc_avg_by_order_key(:topping),
-        oily: targets |> calc_avg_by_order_key(:oily),
-        hardness: targets |> calc_avg_by_order_key(:hardness),
-        salinity: targets |> calc_avg_by_order_key(:salinity)
+        rice: targets |> calc_rate_by_order_key(:rice),
+        topping: targets |> calc_rate_by_order_key(:topping),
+        oil_level: targets |> calc_rate_by_order_key(:oil_level),
+        hard_level: targets |> calc_rate_by_order_key(:hard_level),
+        salt_level: targets |> calc_rate_by_order_key(:salt_level)
       }
     end)
   end
 
-  defp calc_avg_by_order_key(targets, order_key) do
+  defp calc_rate_by_order_key(targets, order_key) do
     targets
     |> Enum.map(&Map.get(&1, order_key))
     |> Enum.group_by(& &1)

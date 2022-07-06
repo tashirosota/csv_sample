@@ -1,6 +1,7 @@
 defmodule WebdbElixirCsvSampleTest do
   use ExUnit.Case
   alias WebdbElixirCsvSample.Order
+  doctest WebdbElixirCsvSample
   import ExUnit.CaptureIO
 
   describe "import!/1" do

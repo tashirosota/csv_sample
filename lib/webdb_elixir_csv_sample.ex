@@ -16,7 +16,7 @@ defmodule WebdbElixirCsvSample do
   end
 
   @doc """
-  各性別、年代毎の Reviewの平均値を標準出力します。
+  各性別、年齢毎の Reviewの平均値を標準出力します。
   """
   def puts_review_avgs(orders) do
     ["男性", "女性"]
@@ -31,7 +31,7 @@ defmodule WebdbElixirCsvSample do
   end
 
   @doc """
-  各性別、年代毎の脂脂、硬さ、濃さ、トッピング、ライスそれぞれの注文率　を標準出力します
+  各性別、年齢毎の脂、硬さ、濃さ、トッピング、ライスそれぞれの注文率　を標準出力します
   """
   def puts_order_rates(orders) do
     ["男性", "女性"]
@@ -44,9 +44,9 @@ defmodule WebdbElixirCsvSample do
         #{age}#{gender}：
           #{rate_map |> format_rate_map(:rice) |> inspect()}
           #{rate_map |> format_rate_map(:topping) |> inspect()}
-          #{rate_map |> format_rate_map(:oily) |> inspect()}
-          #{rate_map |> format_rate_map(:hardness) |> inspect()}
-          #{rate_map |> format_rate_map(:salinity) |> inspect()}
+          #{rate_map |> format_rate_map(:oil_level) |> inspect()}
+          #{rate_map |> format_rate_map(:hard_level) |> inspect()}
+          #{rate_map |> format_rate_map(:salt_level) |> inspect()}
         """
         |> IO.puts()
       end)

@@ -5,7 +5,7 @@ defmodule WebdbElixirCsvSample.OrderTest do
 
   describe "new/1" do
     test "カラムが足らない場合" do
-      assert {:error, :required_columns_dose_not_exsit} = Order.new(%{dummy: :dummy})
+      assert {:error, :required_key_dose_not_exsit} = Order.new(%{dummy: :dummy})
     end
   end
 end
