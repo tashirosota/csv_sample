@@ -23,9 +23,12 @@ defmodule WebdbElixirCsvSample do
     |> Enum.each(fn gender ->
       ["10代", "20代", "30代", "40代", "50代", "60代"]
       |> Enum.each(fn age ->
-        IO.puts(
-          "#{age}#{gender}：平均 #{Order.calc_review_avg(orders, gender, age) |> Float.round(2)} 点"
-        )
+        rate =
+          orders
+          |> Order.calc_review_avg(gender, age)
+          |> Float.round(2)
+
+        IO.puts("#{age}#{gender}：平均 #{rate} 点")
       end)
     end)
   end

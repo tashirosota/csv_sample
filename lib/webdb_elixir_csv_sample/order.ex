@@ -130,16 +130,16 @@ defmodule WebdbElixirCsvSample.Order do
     |> Enum.filter(&filter_func.(&1))
     |> then(fn targets ->
       %{
-        rice: targets |> calc_rate_by_order_key(:rice),
-        topping: targets |> calc_rate_by_order_key(:topping),
-        oil_level: targets |> calc_rate_by_order_key(:oil_level),
-        hard_level: targets |> calc_rate_by_order_key(:hard_level),
-        salt_level: targets |> calc_rate_by_order_key(:salt_level)
+        rice: targets |> calc_rate(:rice),
+        topping: targets |> calc_rate(:topping),
+        oil_level: targets |> calc_rate(:oil_level),
+        hard_level: targets |> calc_rate(:hard_level),
+        salt_level: targets |> calc_rate(:salt_level)
       }
     end)
   end
 
-  defp calc_rate_by_order_key(targets, order_key) do
+  defp calc_rate(targets, order_key) do
     targets
     |> Enum.map(&Map.get(&1, order_key))
     |> Enum.group_by(& &1)
