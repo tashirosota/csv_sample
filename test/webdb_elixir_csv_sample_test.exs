@@ -17,7 +17,7 @@ defmodule WebdbElixirCsvSampleTest do
     end
   end
 
-  describe "puts_review_map/2" do
+  describe "puts_review_avgs/1" do
     setup :setup_orders
 
     test "正常系", %{orders: orders} do
@@ -35,7 +35,7 @@ defmodule WebdbElixirCsvSampleTest do
     end
   end
 
-  describe "puts_order_rates/2" do
+  describe "puts_order_rates/1" do
     setup :setup_orders
 
     test "正常系", %{orders: orders} do
