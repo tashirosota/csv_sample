@@ -130,11 +130,11 @@ defmodule WebdbElixirCsvSample.Order do
     |> Enum.filter(&filter_func.(&1))
     |> then(fn targets ->
       %{
-        rice: targets |> calc_rate(:rice),
-        topping: targets |> calc_rate(:topping),
-        oil_level: targets |> calc_rate(:oil_level),
-        hard_level: targets |> calc_rate(:hard_level),
-        salt_level: targets |> calc_rate(:salt_level)
+        rice: calc_rate(targets, :rice),
+        topping: calc_rate(targets, :topping),
+        oil_level: calc_rate(targets, :oil_level),
+        hard_level: calc_rate(targets, :hard_level),
+        salt_level: calc_rate(targets, :salt_level)
       }
     end)
   end
