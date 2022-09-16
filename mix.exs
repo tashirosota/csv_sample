@@ -1,9 +1,9 @@
-defmodule WebdbElixirCsvSample.MixProject do
+defmodule CsvSample.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :webdb_elixir_csv_sample,
+      app: :csv_sample,
       version: "0.1.0",
       elixir: "~> 1.13.4",
       start_permanent: Mix.env() == :prod,
@@ -27,6 +27,6 @@ defmodule WebdbElixirCsvSample.MixProject do
   end
 
   defp escript do
-    [main_module: WebdbElixirCsvSample.CLI]
+    [main_module: CsvSample.CLI]
   end
 end

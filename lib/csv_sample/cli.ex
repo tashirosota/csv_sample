@@ -1,13 +1,16 @@
-defmodule WebdbElixirCsvSample.CLI do
+defmodule CsvSample.CLI do
+  @moduledoc """
+  このプロジェクトのCLI用のモジュールです。
+  """
   def main(args \\ []) do
     {path, type} =
       args
       |> parse_args()
 
     apply(
-      WebdbElixirCsvSample,
+      CsvSample,
       String.to_atom("puts_#{type}"),
-      [WebdbElixirCsvSample.import!(path)]
+      [CsvSample.import!(path)]
     )
   end
 

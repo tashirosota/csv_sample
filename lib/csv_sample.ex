@@ -1,11 +1,11 @@
-defmodule WebdbElixirCsvSample do
+defmodule CsvSample do
   @moduledoc """
-  家系ラーメンの注文データCSVを読み込んで、それらを用いて任意の分析を行う module です。
+  家系ラーメンの注文データCSVを読み込んで、それらを用いて任意の分析を行うモジュールです。
   """
-  alias WebdbElixirCsvSample.Order
+  alias CsvSample.Order
 
   @doc """
-  指定のpathから家系ラーメンの注文データを読み込み、Order structの配列を生成します。
+  指定のpathから家系ラーメンの注文データを読み込み、Order構造体の配列を生成します。
   """
   def import!(path) do
     path
@@ -16,7 +16,7 @@ defmodule WebdbElixirCsvSample do
   end
 
   @doc """
-  各性別、年齢毎の Reviewの平均値を標準出力します。
+  各性別、年齢層毎の Reviewの平均値を標準出力します。
   """
   def puts_review_avgs(orders) do
     ["男性", "女性"]
@@ -34,7 +34,7 @@ defmodule WebdbElixirCsvSample do
   end
 
   @doc """
-  各性別、年齢毎の脂、硬さ、濃さ、トッピング、ライスそれぞれの注文率　を標準出力します
+  各性別、年齢層毎の脂、硬さ、濃さ、トッピング、ライスそれぞれの注文率　を標準出力します
   """
   def puts_order_rates(orders) do
     ["男性", "女性"]

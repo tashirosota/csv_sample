@@ -1,6 +1,6 @@
-defmodule WebdbElixirCsvSample.OrderTest do
+defmodule CsvSample.OrderTest do
   use ExUnit.Case
-  alias WebdbElixirCsvSample.Order
+  alias CsvSample.Order
   doctest Order
 
   describe "new/1" do

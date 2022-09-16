@@ -42,7 +42,7 @@ New:
 ```
 
 ```elixir
-orders = WebdbElixirCsvSample.import!("priv/ie_ramen.csv")
-orders |> WebdbElixirCsvSample.Order.calc_review_avg("男", "10代")
-orders |> WebdbElixirCsvSample.Order.calc_order_rates(& &1.age == "10代")
+orders = CsvSample.import!("priv/ie_ramen.csv")
+orders |> CsvSample.Order.calc_review_avg("男", "10代")
+orders |> CsvSample.Order.calc_order_rates(& &1.age == "10代")
 ```

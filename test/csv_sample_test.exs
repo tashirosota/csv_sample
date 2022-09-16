@@ -1,18 +1,18 @@
-defmodule WebdbElixirCsvSampleTest do
+defmodule CsvSampleTest do
   use ExUnit.Case
-  alias WebdbElixirCsvSample.Order
-  doctest WebdbElixirCsvSample
+  alias CsvSample.Order
+  doctest CsvSample
   import ExUnit.CaptureIO
 
   describe "import!/1" do
     test "正常系" do
-      assert [_ | _] = orders = WebdbElixirCsvSample.import!("priv/ie_ramen.csv")
+      assert [_ | _] = orders = CsvSample.import!("priv/ie_ramen.csv")
       assert orders |> Enum.all?(&match?(&1, %Order{}))
     end
 
     test "存在しないpathが指定された場合" do
       assert_raise File.Error, fn ->
-        WebdbElixirCsvSample.import!("dummy_path")
+        CsvSample.import!("dummy_path")
       end
     end
   end
@@ -23,7 +23,7 @@ defmodule WebdbElixirCsvSampleTest do
     test "正常系", %{orders: orders} do
       log =
         capture_io(fn ->
-          assert :ok = WebdbElixirCsvSample.puts_review_avgs(orders)
+          assert :ok = CsvSample.puts_review_avgs(orders)
         end)
 
       assert log =~ "10代男性：平均"
@@ -41,7 +41,7 @@ defmodule WebdbElixirCsvSampleTest do
     test "正常系", %{orders: orders} do
       log =
         capture_io(fn ->
-          assert :ok = WebdbElixirCsvSample.puts_order_rates(orders)
+          assert :ok = CsvSample.puts_order_rates(orders)
         end)
 
       assert log =~ "10代男性"
@@ -59,6 +59,6 @@ defmodule WebdbElixirCsvSampleTest do
   end
 
   defp setup_orders(_) do
-    [orders: WebdbElixirCsvSample.import!("priv/ie_ramen.csv")]
+    [orders: CsvSample.import!("priv/ie_ramen.csv")]
   end
 end
