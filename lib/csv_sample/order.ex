@@ -142,14 +142,18 @@ defmodule CsvSample.Order do
     end)
   end
 
-  defp calc_rate(targets, order_key) do
-    targets
+  defp calc_rate(orders, order_key) do
+    total_count = Enum.count(orders)
+
+    orders
     |> Enum.map(&Map.get(&1, order_key))
     |> Enum.group_by(& &1)
     |> Enum.map(fn {key, each_values} ->
+      count = Enum.count(each_values)
+
       {
         key,
-        Enum.count(each_values) / Enum.count(targets) * 100
+        count / total_count * 100
       }
     end)
     |> Map.new()
