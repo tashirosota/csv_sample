@@ -43,6 +43,6 @@ New:
 
 ```elixir
 orders = CsvSample.import!("priv/ie_ramen.csv")
-orders |> CsvSample.Order.calc_review_avg("男", "10代")
-orders |> CsvSample.Order.calc_order_rates(& &1.age == "10代")
+orders |> CsvSample.Order.calc_review_avg("男", "10代以下")
+orders |> CsvSample.Order.calc_order_rates(& &1.age == "10代以下")
 ```

@@ -26,10 +26,10 @@ defmodule CsvSampleTest do
           assert :ok = CsvSample.puts_review_avgs(orders)
         end)
 
-      assert log =~ "10代男性：平均"
+      assert log =~ "10代以下男性：平均"
       assert log =~ "30代男性：平均"
       assert log =~ "50代男性：平均"
-      assert log =~ "10代女性：平均"
+      assert log =~ "10代以下女性：平均"
       assert log =~ "30代女性：平均"
       assert log =~ "50代女性：平均"
     end
@@ -44,10 +44,10 @@ defmodule CsvSampleTest do
           assert :ok = CsvSample.puts_order_rates(orders)
         end)
 
-      assert log =~ "10代男性"
+      assert log =~ "10代以下男性"
       assert log =~ "30代男性"
       assert log =~ "50代男性"
-      assert log =~ "10代女性"
+      assert log =~ "10代以下女性"
       assert log =~ "30代女性"
       assert log =~ "50代女性"
       assert log =~ "ライス"

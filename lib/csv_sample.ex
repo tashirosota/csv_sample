@@ -21,7 +21,7 @@ defmodule CsvSample do
   def puts_review_avgs(orders) do
     ["男性", "女性"]
     |> Enum.each(fn gender ->
-      ["10代", "20代", "30代", "40代", "50代", "60代"]
+      ["10代以下", "20代", "30代", "40代", "50代", "60代以上"]
       |> Enum.each(fn age ->
         rate =
           orders
@@ -39,7 +39,7 @@ defmodule CsvSample do
   def puts_order_rates(orders) do
     ["男性", "女性"]
     |> Enum.each(fn gender ->
-      ["10代", "20代", "30代", "40代", "50代", "60代"]
+      ["10代以下", "20代", "30代", "40代", "50代", "60代以上"]
       |> Enum.each(fn age ->
         rate_map = orders |> Order.calc_order_rates(&(&1.gender == gender && &1.age == age))
 
